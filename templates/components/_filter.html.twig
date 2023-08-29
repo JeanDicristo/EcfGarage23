@@ -1,0 +1,25 @@
+{{ form_start(form, {attr: {class: 'filter'}}) }}
+{{ form_row(form.q) }}
+
+<h4>Marques</h4>
+{{ form_row(form.brands) }}
+
+<h4>Prix</h4>
+<div class="row">
+	<div class="col-md-6">
+		{{ form_row(form.min) }}
+	</div>
+	<div class="col-md-6">
+		{{ form_row(form.max) }}
+	</div>
+<div id="price-slider"></div>
+</div>
+<div class="col">
+		{{ form_row(form.mileage) }}
+</div>
+
+
+<h4>Promotion</h4>
+{{ form_row(form.promo) }}
+<button type="submit" class="btn btn-warning w-100">filtrer</button>
+{{ form_end(form) }}

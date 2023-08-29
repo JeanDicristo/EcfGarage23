@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos véhicule{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            {% include "components/_filter.html.twig" with {form: form} only %}
+        </div>
+        <div class="col-md-9">
+        <div class="grid">
+            {% for product in products %}
+                {% include "components/_product.html.twig" with {product: product} only %}
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+    </div>
+    <script type="module">
+    import noUiSlider from 'nouislider/dist/nouislider.mjs';
+</script>
+{% endblock %}

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
@@ -30,6 +32,14 @@ class Product
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Brand $brands = null;
+
+    #[ORM\ManyToMany(targetEntity: Equipment::class, inversedBy: 'products')]
+    private Collection $equipment;
+
+    public function __construct()
+    {
+        $this->equipment = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -104,6 +114,30 @@ class Product
     public function setBrands(?Brand $brands): static
     {
         $this->brands = $brands;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Equipment>
+     */
+    public function getEquipment(): Collection
+    {
+        return $this->equipment;
+    }
+
+    public function addEquipment(Equipment $equipment): static
+    {
+        if (!$this->equipment->contains($equipment)) {
+            $this->equipment->add($equipment);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipment(Equipment $equipment): static
+    {
+        $this->equipment->removeElement($equipment);
 
         return $this;
     }

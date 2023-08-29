@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}V.parrot - contact!
+{% endblock %}
+
+{% block body %}
+	<h1>Formulaire de contact</h1>
+	{{ form_start(contactForm) }}
+	{{ form_end(contactForm) }}
+
+	<div class="space-contact">
+		<div class="space-contact-link">
+			<img src="{{asset('images/email-2.png')}}" alt="" class="img-user">
+			<a href="mailto:v.parrot@contact.fr">v.parrot@contact.fr</a>
+		</div>
+		<div class="space-contact-link">
+			<img src="{{asset('images/phone-call-2.png')}}" alt="" class="img-user">
+			<a href="tel:0123456789">01 23 45 67 89</a>
+		</div>
+	</div>
+	<div class="d-flex justify-content-end">
+		{# <a href="{{ path('newCar')}}" class="btn btn-create">Créer une offre</a>  A FAIRE APRES LE CRUD PRODUCT#}  
+	</div>
+
+{% endblock %}

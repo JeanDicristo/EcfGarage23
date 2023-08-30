@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: ProfilUserRepository::class)]
+#[ORM\EntityListeners(['App\EntityListener\UserListener'])]
 class ProfilUser implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]

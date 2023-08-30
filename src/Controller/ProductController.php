@@ -40,7 +40,7 @@ class ProductController extends AbstractController
         EntityManagerInterface $manager,) 
     {
 
-    // Import Entity Hourly via the repository
+    // Import Entity Hourly 
     $hourlyRepository = $manager->getRepository(Hourly::class);
     $hourlys = $hourlyRepository->findBy([]);
 
@@ -64,5 +64,59 @@ class ProductController extends AbstractController
         'productForm' => $form->createView(),
         'hourlys' => $hourlys
     ]);
+    }
+
+        // Function edit Product
+        #[Route('/vehicule/edition/{id}', name: 'editCar', methods: ['GET', 'POST'])]
+        public function edit(
+            HourlyRepository $hourlyRepository,
+            HttpFoundationRequest $request,
+            EntityManagerInterface $manager
+        ): Response {
+
+            // Import Entity Hourly 
+            $hourlyRepository = $manager->getRepository(Hourly::class);
+            $hourlys = $hourlyRepository->findBy([]);
+
+            $product = new Product();
+            $form = $this->createForm(ProductType::class, $product);
+            $form->handleRequest($request);
+    
+            if ($form->isSubmitted() && $form->isValid()) {
+                $product = $form->getData();
+    
+                $manager->persist($product);
+                $manager->flush();
+    
+                $this->addFlash(
+                    'success',
+                    'Votre voiture à bien étais modifier'
+                );
+    
+                return $this->redirectToRoute('index');
+            }
+    
+            return $this->render('pages/product/edit.html.twig', [
+                'carForm' => $form->createView(),
+                'hourlys' => $hourlys,
+            ]);
+        }
+
+                // Function delete Product
+    #[Route('/vehicule/supprimer/{id}', name: 'deleteCar', methods: ['GET'])]
+    public function delete(
+        EntityManagerInterface $manager,
+        Product $product
+    ): Response {
+
+        $manager->remove($product);
+        $manager->flush();
+
+        $this->addFlash(
+            'success',
+            'Votre offre a été supprimé avec succès !'
+        );
+
+        return $this->redirectToRoute('occasion');
     }
 }

@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!
+{% endblock %}
+
+{% block body %}
+	<h1>Formulaire de création d'offre</h1>
+	{{ form_start(productForm) }}
+	<div class="form-group">
+		{{ form_label(productForm.name) }}
+		{{ form_widget(productForm.name) }}
+		<div class="form-error">
+			{{ form_errors(productForm.name) }}
+		</div>
+	</div>
+	<div class="form-group">
+		{{ form_label(productForm.price) }}
+		{{ form_widget(productForm.price) }}
+		<div class="form-error">
+			{{ form_errors(productForm.price) }}
+		</div>
+	</div>
+	<div class="form-group">
+		{{ form_label(productForm.description) }}
+		{{ form_widget(productForm.description) }}
+		<div class="form-error">
+			{{ form_errors(productForm.description) }}
+		</div>
+	</div>
+	<div class="form-group">
+		{{ form_label(productForm.year) }}
+		{{ form_widget(productForm.year) }}
+		<div class="form-error">
+			{{ form_errors(productForm.year) }}
+		</div>
+	</div>
+	<div class="form-group">
+		{{ form_label(productForm.mileage) }}
+		{{ form_widget(productForm.mileage) }}
+		<div class="form-error">
+			{{ form_errors(productForm.mileage) }}
+		</div>
+	</div>
+	<div class="form-group">
+		{{ form_label(productForm.brand) }}
+		{{ form_widget(productForm.brand) }}
+		<div class="form-error">
+			{{ form_errors(productForm.brand) }}
+		</div>
+	</div>
+	<div class="form-group">
+		{{ form_label(productForm.equipment) }}
+		{{ form_widget(productForm.equipment) }}
+		<div class="form-error">
+			{{ form_errors(productForm.equipment) }}
+		</div>
+	{# </div>
+	<div class="form-group">
+		{{ form_label(carForm.imageFile) }}
+		{{ form_widget(carForm.imageFile) }}
+		<div class="form-error">
+			{{ form_errors(carForm.imageFile) }}
+		</div>
+	</div> #}
+		<div class="form-group">
+			{{ form_row(productForm.submit) }}
+		</div>
+
+
+	{{ form_end(productForm) }}
+{% endblock %}
